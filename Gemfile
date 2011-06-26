@@ -12,7 +12,7 @@ gem 'devise', :git => 'git://github.com/plataformatec/devise.git' # users setup
 gem 'cancan' # rights management
 gem 'gravatar' # avatars
 gem 'omniauth' # facebook integrations
-gem "compass", ">= 0.11.1" # SASS
+gem "compass", ">= 0.11.3" # SASS
 gem 'client_side_validations' # javascript validations
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git' # admin interface
 gem 'navigasmic' # navigation

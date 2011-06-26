@@ -207,7 +207,7 @@ DEPENDENCIES
   autotest
   cancan
   client_side_validations
-  compass (>= 0.11.1)
+  compass (>= 0.11.3)
   devise!
   factory_girl_rails
   geocoder
