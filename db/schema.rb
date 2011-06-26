@@ -10,7 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110626225250) do
+ActiveRecord::Schema.define(:version => 20110626230028) do
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.string   "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
 
   create_table "spots", :force => true do |t|
     t.string   "title"
@@ -22,7 +35,10 @@ ActiveRecord::Schema.define(:version => 20110626225250) do
     t.datetime "updated_at"
     t.string   "area"
     t.string   "category"
+    t.integer  "user_id"
   end
+
+  add_index "spots", ["user_id"], :name => "index_spots_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
