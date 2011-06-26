@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110626230028) do
+ActiveRecord::Schema.define(:version => 20110626232231) do
 
   create_table "rails_admin_histories", :force => true do |t|
     t.string   "message"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20110626230028) do
     t.string   "area"
     t.string   "category"
     t.integer  "user_id"
+    t.boolean  "gmaps"
   end
 
   add_index "spots", ["user_id"], :name => "index_spots_on_user_id"

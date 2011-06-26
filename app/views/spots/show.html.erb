@@ -34,7 +34,7 @@
   <b>Area:</b>
   <%= @spot.area %>
 </p>
-
+  <%= gmaps4rails(@json) %>
 
 <%= link_to 'Edit', edit_spot_path(@spot) %> |
 <%= link_to 'Back', spots_path %>
