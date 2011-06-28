@@ -15,7 +15,7 @@ class SpotsController < ApplicationController
   # GET /spots/1.xml
   def show
     @spot = Spot.find(params[:id])
-
+    @json = @spot.to_gmaps4rails
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @spot }

@@ -1,11 +1,37 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'sqlite3' # db
+gem 'jquery-rails' # jquery
+gem 'nifty-generators' # better views
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git' # users setup
+gem 'cancan' # rights management
+gem 'gravatar' # avatars
+gem 'omniauth' # facebook integrations
+gem "compass", ">= 0.11.3" # SASS
+gem 'client_side_validations' # javascript validations
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git' # admin interface
+gem 'navigasmic' # navigation
+gem 'geocoder' # geocoding
+gem 'gmaps4rails' # google maps integration
+
+group :development do
+  gem 'growl' # osx notifications 
+  gem 'autotest'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'i18n'
+  gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
+end
+
+group :development, :test do
+  gem 'webrat'
+  gem 'rspec'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'
