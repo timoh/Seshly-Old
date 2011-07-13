@@ -1,5 +1,7 @@
 Seshly::Application.routes.draw do
   resources :spots
+  
+  root :to => "spots#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
