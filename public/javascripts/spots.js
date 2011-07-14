@@ -13,7 +13,7 @@ jQuery(document).ready(function() {
 
 	var request_data = null;
   	
-	jQuery.getJSON('http://localhost:3000/spots.json', request_data , function(data){
+	jQuery.getJSON('spots.json', request_data , function(data){
 		jQuery.each(data, function(i, object) {
 			
 			console.log(object.spot.title);
