@@ -1,13 +1,10 @@
 <div id="listing">
 	
-	<h1>Listing spots</h1>
+	<h1>Seshly v.0.1a</h1>
 
 	<table>
 	  <tr>
 	    <th>Title</th>
-	    <th>Latitude</th>
-	    <th>Longitude</th>
-	    <th>Address</th>
 	    <th>Description</th>
 	    <th>Category</th>
 		<th>Area</th>
@@ -19,10 +16,6 @@
 	<% @spots.each do |spot| %>
 	  <tr>
 	    <td><%= spot.title %></td>
-
-	    <td><%= spot.latitude %></td>
-	    <td><%= spot.longitude %></td>
-	    <td><%= spot.address %></td>
 	    <td><%= spot.description %></td>
 	    <td><%= spot.category %></td>
 		<td><%= spot.area %></td>
@@ -41,4 +34,4 @@
 
 </div>
 
-<div id="map_canvas" style="width:100%; height:80%"></div>
+<div id="map_canvas" style="width:100%; height:75%"></div>
