@@ -6,17 +6,14 @@
 body {
     background: #212121;
     font-family: 'Trebuchet Ms', sans-serif;
-    font-size: 1.5em;
     line-height: 1.3;
     color: #333;
 }
 
-h1 {
+p {
+	color: white;
+	
 }
-
-#map {
-}
-
 
 #listing {
 
