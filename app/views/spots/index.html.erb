@@ -27,6 +27,22 @@
 	</table>
 
 	<br />
+	<form action="/spots/?" method="get">
+		<select name="category">
+			<option value="">All categories</option>
+		<% for category in @categories %>
+			<option value="<%= category %>"><%= category%></option>
+		<% end %>
+		</select>
+		<select name="area">
+			<option value="">All areas</option>
+		<% for area in @areas %>
+			<option value="<%= area %>"><%= area %></option>
+		<% end %>
+		</select>
+		<input type="submit" value="Filter">
+
+	</form>
 
 	<%= link_to 'New Spot', new_spot_path %>
 

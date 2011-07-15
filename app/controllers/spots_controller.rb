@@ -3,6 +3,30 @@ class SpotsController < ApplicationController
   # GET /spots.xml
   def index
     @spots = Spot.all
+    @categories = Spot.getCategories
+    @areas = Spot.getAreas
+    
+    if(params[:category])
+      if(params[:category].length > 0)
+        @spots = Spot.find_all_by_category(params[:category])
+        puts "Filtering by category."
+      end
+    end
+    
+    if(params[:area])
+      if(params[:area].length > 0)   
+        @spots = Spot.find_all_by_area(params[:area])
+         puts "Filtering by area."
+      end
+    end
+    
+    if (params[:category] and params[:area])
+      if (params[:category].length > 0 and params[:area].length > 0)
+        @spots = Spot.where("category = ? AND area = ?", params[:category], params[:area])
+        puts "Filtering by both category and area."
+      end
+    end
+
 
     respond_to do |format|
       format.html # index.html.erb

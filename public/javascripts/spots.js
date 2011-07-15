@@ -1,22 +1,48 @@
 jQuery(document).ready(function() {
 
+
+	//setup new centerpoint for map
     var latlng = new google.maps.LatLng(60.17, 24.93);
 
+	//setup the map
     var myOptions = {
       zoom: 12,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
+	//initialize map with prior settings
     var map = new google.maps.Map(document.getElementById("map_canvas"),
         myOptions);
 
+		//get-parameters
+		function getParameterByName(name)
+		{
+		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		  var regexS = "[\\?&]" + name + "=([^&#]*)";
+		  var regex = new RegExp(regexS);
+		  var results = regex.exec(window.location.href);
+		  if(results == null)
+		    return "";
+		  else
+		    return decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+
+
+	//prepare for getJSON request
 	var request_data = null;
-  	
-	jQuery.getJSON('spots.json', request_data , function(data){
+	var request_base = '/spots.json';
+	var request_arguments = '';
+	
+	//build request arguments
+	if (getParameterByName('category')) {
+		request_arguments = '/?category='+getParameterByName('category');
+	}
+	
+	var request_target = request_base+request_arguments;
+
+	jQuery.getJSON(request_target, request_data , function(data){
 		jQuery.each(data, function(i, object) {
-			
-			console.log(object.spot.title);
 			
 			var spotLatLng = new google.maps.LatLng(object.spot.latitude,object.spot.longitude);
 						
