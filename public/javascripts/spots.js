@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
 			var spot_desc = object.spot.description;
 			
 			var contentString = '<div id="content"><h1>'+spot_title+'</h1>'+
-			'<p>'+spot_desc+'</p><p><a href="spots/'+object.spot.id+'">View details..</a></p></div>';
+			'<p>'+spot_desc.substring(0, 30)+'...</p><p><a href="spots/'+object.spot.id+'">View details..</a></p></div>';
 		    
 			var infowindow = new google.maps.InfoWindow({
 		        content: contentString
