@@ -16,7 +16,7 @@ jQuery(document).ready(function() {
         myOptions);
 
 		//get-parameters
-		function getParameterByName(name)
+	function getParameterByName(name)
 		{
 		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 		  var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -27,7 +27,6 @@ jQuery(document).ready(function() {
 		  else
 		    return decodeURIComponent(results[1].replace(/\+/g, " "));
 		}
-
 
 	//prepare for getJSON request
 	var request_data = null;
@@ -40,7 +39,7 @@ jQuery(document).ready(function() {
 	}
 	
 	var request_target = request_base+request_arguments;
-
+	
 	jQuery.getJSON(request_target, request_data , function(data){
 		jQuery.each(data, function(i, object) {
 			
@@ -49,7 +48,7 @@ jQuery(document).ready(function() {
 			var spot_title = object.spot.title;
 			var spot_desc = object.spot.description;
 			
-			var contentString = '<div id="content"><h1>'+spot_title+'</h1>'+
+			var contentString = '<div class="bubble" id="content"><h1>'+spot_title+'</h1>'+
 			'<p>'+spot_desc.substring(0, 30)+'...</p><p><a href="spots/'+object.spot.id+'">View details..</a></p></div>';
 		    
 			var infowindow = new google.maps.InfoWindow({
@@ -64,9 +63,24 @@ jQuery(document).ready(function() {
 		  });
 		
 		google.maps.event.addListener(marker, 'click', function() {
-	      infowindow.open(map,marker);
+		
+			infowindow.open(map,marker);
+			var newCenter = marker.getPosition();
+			map.setCenter(newCenter);
+			
 	    });
+	
+		google.maps.event.addListener(map, 'click', function() {
+			infowindow.close(map,marker);
+		});
+		
+		google.maps.event.addListener(map, 'dragstart', function() {
+			infowindow.close(map,marker);
+		});
 		
 		})
 	});
+
+	
+
 });

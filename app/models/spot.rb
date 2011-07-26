@@ -1,5 +1,9 @@
 class Spot < ActiveRecord::Base
   
+  validates_numericality_of :longitude
+  validates_numericality_of :latitude
+  validates_length_of :title, :maximum => 30
+  
   def self.getCategories  
     categories = []  
     for spot in self.all

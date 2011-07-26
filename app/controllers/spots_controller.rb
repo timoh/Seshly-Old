@@ -71,7 +71,7 @@ class SpotsController < ApplicationController
 
     respond_to do |format|
       if @spot.save
-        format.html { redirect_to(@spot, :notice => 'Spot was successfully created.') }
+        format.html { redirect_to(spots_url, :notice => 'Spot was successfully created.') }
         format.xml  { render :xml => @spot, :status => :created, :location => @spot }
       else
         format.html { render :action => "new" }
@@ -87,7 +87,7 @@ class SpotsController < ApplicationController
 
     respond_to do |format|
       if @spot.update_attributes(params[:spot])
-        format.html { redirect_to(@spot, :notice => 'Spot was successfully updated.') }
+        format.html { redirect_to(spots_url, :notice => 'Spot was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
