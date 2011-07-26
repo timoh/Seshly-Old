@@ -39,6 +39,7 @@ class SpotsController < ApplicationController
   # GET /spots/1.xml
   def show
     @spot = Spot.find(params[:id])
+    @tags = @spot.tags
 
     respond_to do |format|
       format.html # show.html.erb
@@ -51,6 +52,7 @@ class SpotsController < ApplicationController
   # GET /spots/new.xml
   def new
     @spot = Spot.new
+    @tags = Tag.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -62,6 +64,7 @@ class SpotsController < ApplicationController
   # GET /spots/1/edit
   def edit
     @spot = Spot.find(params[:id])
+    @tags = Tag.all
   end
 
   # POST /spots
@@ -84,6 +87,7 @@ class SpotsController < ApplicationController
   # PUT /spots/1.xml
   def update
     @spot = Spot.find(params[:id])
+    @tags = @spot.items
 
     respond_to do |format|
       if @spot.update_attributes(params[:spot])

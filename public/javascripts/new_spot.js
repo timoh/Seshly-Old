@@ -22,16 +22,12 @@ jQuery(document).ready(function() {
 							geocoder.geocode({'latLng': latlng}, function(results, status, callback) {
 									if (status == google.maps.GeocoderStatus.OK && results[1]) {						
 	
-	
-											console.log(jQuery('#spot_longitude'));
-	
 											jQuery('#spot_latitude').val(position.coords.latitude);
 											jQuery('#spot_longitude').val(position.coords.longitude);
 											jQuery('#spot_address').val(results[0].formatted_address);
 											jQuery('#spot_area').val(results[2].formatted_address);
 											
 											zoomLevel = Math.ceil((290000/position.coords.accuracy));
-											console.log(zoomLevel);
 
 											//setup the map
 										    var myOptions = {
@@ -43,7 +39,6 @@ jQuery(document).ready(function() {
 											//initialize map with prior settings
 										    var map = new google.maps.Map(document.getElementById("map_canvas"),
 										        myOptions);
-											console.log('Latlng is: '+latlng);
 
 											function reverseGeocode(GClatlng) {
 
@@ -55,7 +50,8 @@ jQuery(document).ready(function() {
 																		jQuery('#spot_latitude').val(GClatlng.lat());
 																		jQuery('#spot_longitude').val(GClatlng.lng());
 																		jQuery('#spot_address').val(results[0].formatted_address);
-																		jQuery('#spot_area').val(results[2].formatted_address);
+																		jQuery('#spot_area').val(results[3].formatted_address);
+																		console.log(results[2].types);
 																		
 																		infowindow.setContent('<div class="bubble" id="content"><h2>Add new spot here</h2><p>'+results[0].formatted_address+
 																		'</p></div>');
@@ -87,8 +83,13 @@ jQuery(document).ready(function() {
 												infowindow.open(map,marker);
 											});
 											
-											google.maps.event.addListener(map, 'click', function() {
+											google.maps.event.addListener(map, 'click', function(event) {
 												infowindow.close(map,marker);
+												var newCenter = marker.getPosition();
+												map.setCenter(newCenter);
+												marker.setPosition(event.latLng);
+												reverseGeocode(marker.getPosition());
+												infowindow.open(map,marker);
 											});
 
 											google.maps.event.addListener(marker, 'dragend', function() {
@@ -98,7 +99,6 @@ jQuery(document).ready(function() {
 												if (Number(zoomLevel) < 19) {
 													zoomLevel = 1+zoomLevel;
 													var newCenter = marker.getPosition();
-													console.log('new center is '+newCenter);
 													map.setCenter(newCenter);
 													map.setZoom(zoomLevel);
 												}

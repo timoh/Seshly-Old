@@ -1,4 +1,6 @@
 Seshly::Application.routes.draw do
+  resources :tags
+
   resources :spots
   
   root :to => "spots#index"

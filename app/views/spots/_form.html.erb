@@ -1,3 +1,5 @@
+<%= javascript_include_tag "tags" %>
+
 <%= form_for(@spot) do |f| %>
   <% if @spot.errors.any? %>
     <div id="error_explanation">
@@ -32,13 +34,20 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :category %><br />
-    <%= f.text_field :category %>
-  </div>
-  <div class="field">
     <%= f.label :area %><br />
     <%= f.text_field :area %>
   </div>
+
+  <div class="field">
+	<%= f.label :tags %><br />
+<input id="add-tags">
+  </div>
+
+<% for tag in @tags %>
+<li><span>X</span> <%= tag.title %></li>
+<input id="spot_tags" name="spot[tags]" type="hidden" value="<%= tag.title%>">
+<% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

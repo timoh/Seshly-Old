@@ -1,5 +1,7 @@
 class Spot < ActiveRecord::Base
   
+  has_and_belongs_to_many :tags
+  
   validates_numericality_of :longitude
   validates_numericality_of :latitude
   validates_length_of :title, :maximum => 30
